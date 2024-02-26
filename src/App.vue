@@ -3,6 +3,7 @@ import Navbar from "@/components/Layout/Navbar.vue";
 </script>
 <template>
   <Navbar />
-
-  <RouterView/>
+  <div class="container is-max-desktop px-2 py-4">
+    <RouterView/>
+  </div>
 </template>

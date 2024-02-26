@@ -9,26 +9,31 @@
       class="navbar is-success"
       role="navigation"
       aria-label="main navigation">
-    <div class="container is-max-desktop">
+    <div class="container is-max-desktop px-2">
       <div class="navbar-brand">
         <a class="navbar-item is-size-4 is-family-monospace"  href="/">
           NoteBalls
         </a>
 
         <a
-            role="button"
+            @click.prevent="showMobileNav = !showMobileNav"
             class="navbar-burger"
             :class="{ 'is-active' : showMobileNav }"
             aria-label="menu"
             aria-expanded="false"
-            data-target="navbarBasicExample">
+            data-target="navbarBasicExample"
+            role="button"
+        >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
 
-      <div class="navbar-menu">
+      <div
+          class="navbar-menu"
+          :class="{ 'is-active' : showMobileNav }"
+      >
 
         <div class="navbar-end">
           <RouterLink
