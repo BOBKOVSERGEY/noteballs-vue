@@ -1,6 +1,7 @@
 <script setup>
   import {computed} from "vue";
-  import { useNotesStore } from "@/stores/NotesStore.js";
+  import { useNotesStore} from "@/stores/NotesStore.js";
+  const storeNotes = useNotesStore();
 
   const props = defineProps({
     note: {
@@ -9,13 +10,16 @@
     }
   })
 
-  const storeNotes = useNotesStore();
+  const emit = defineEmits(['deleteClicked']);
+
 
   const characterLength = computed(() => {
     let length = props.note.content.length;
     let description = length > 1 ? 'characters' : 'character'
     return `${length} ${description}`
   })
+
+
 
 </script>
 
@@ -33,7 +37,14 @@
       </div>
     </div>
     <footer class="card-footer">
-      <a href="#" class="card-footer-item">Edit</a>
+      <RouterLink
+          :to="{
+                  name: 'EditNote',
+                  params: {id: note.id}
+               }"
+          class="card-footer-item">
+        Edit
+      </RouterLink>
       <a href="#"
          @click.prevent="storeNotes.deleteNote(note.id)"
          class="card-footer-item"

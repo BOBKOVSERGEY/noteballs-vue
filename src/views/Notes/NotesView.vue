@@ -2,6 +2,7 @@
   import {ref} from "vue";
   import Note from "@/components/Notes/Note.vue";
   import { useNotesStore } from "@/stores/NotesStore.js";
+  import AddEditNote from "@/components/Notes/AddEditNote.vue";
 
   const newNote = ref('');
 
@@ -20,7 +21,20 @@
 </script>
 
 <template>
-  <div class="card has-background-success-dark mb-4 p-4">
+  {{newNote}}
+  <AddEditNote
+      v-model="newNote"
+  >
+    <template v-slot:buttons>
+      <button
+          @click="addNote"
+          :disabled="!newNote"
+          class="button is-link has-background-success">
+        Add new Note
+      </button>
+    </template>
+  </AddEditNote>
+  <!--<div class="card has-background-success-dark mb-4 p-4">
     <div class="field">
       <label class="label">Message</label>
       <div class="control">
@@ -42,7 +56,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </div>-->
   <Note v-for="note in storeNotes.notes"
         :key="note.id"
         :note="note"
