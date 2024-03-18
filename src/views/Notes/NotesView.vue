@@ -21,7 +21,6 @@
 </script>
 
 <template>
-  {{newNote}}
   <AddEditNote
       v-model="newNote"
   >

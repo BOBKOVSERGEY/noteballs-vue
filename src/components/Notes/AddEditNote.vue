@@ -1,16 +1,6 @@
 <script setup>
-  const props = defineProps({
-    modelValue: {
-      type: String,
-      required: true
-    }
-  })
+  const modelValue = defineModel();
 
-  const emit = defineEmits(['update:modelValue']);
-
-  const onInput = (e) => {
-    emit('update:modelValue', e.target.value)
-  }
 </script>
 
 <template>
@@ -19,8 +9,7 @@
       <label class="label">Message</label>
       <div class="control">
         <textarea
-            :value="modelValue"
-            @input="onInput"
+            v-model="modelValue"
             class="textarea"
             placeholder="Write a new note"
             ref="newNoteRef"
