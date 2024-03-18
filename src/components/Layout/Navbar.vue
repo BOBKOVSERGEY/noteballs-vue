@@ -11,9 +11,9 @@
       aria-label="main navigation">
     <div class="container is-max-desktop px-2">
       <div class="navbar-brand">
-        <a class="navbar-item is-size-4 is-family-monospace"  href="/">
+        <RouterLink class="navbar-item is-size-4 is-family-monospace"  :to="{name: 'Notes'}">
           NoteBalls
-        </a>
+        </RouterLink>
 
         <a
             @click.prevent="showMobileNav = !showMobileNav"
