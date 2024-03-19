@@ -16,9 +16,28 @@ export const useNotesStore = defineStore('notes', () => {
         ]
     );
 
+    /* getters */
+
     const getNoteContent = computed(() => {
         return (id) =>  notes.value.filter((note) => note.id === id)[0].content
     })
+
+    const totalNotesCount = computed(() => {
+            return notes.value.length
+    });
+
+    const totalCharactersCount = computed(() => {
+        let count = 0;
+
+        notes.value.forEach(note => {
+            count += note.content.length
+        })
+
+        return count;
+    })
+
+
+    /* methods */
 
     const addNote = (newNoteContent) => {
         let currentDate = new Date().getTime();
@@ -46,6 +65,8 @@ export const useNotesStore = defineStore('notes', () => {
     return {
         notes,
         getNoteContent,
+        totalNotesCount,
+        totalCharactersCount,
         addNote,
         deleteNote,
         updateNote

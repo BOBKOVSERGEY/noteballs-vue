@@ -1,6 +1,6 @@
 <script setup>
 import {onMounted, ref} from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useNotesStore } from "@/stores/NotesStore.js";
 
 import AddEditNote from "@/components/Notes/AddEditNote.vue";
@@ -9,18 +9,16 @@ import AddEditNote from "@/components/Notes/AddEditNote.vue";
   router
 */
 const route = useRoute();
+const router = useRouter();
 
 const noteContent = ref('');
 const storeNotes = useNotesStore();
 
 const handleSaveClicked = () => {
-
-  let payload = {
-    id: route.params.id,
-    content: noteContent
-  }
-
   storeNotes.updateNote(route.params.id, noteContent.value)
+  router.push({
+    name: "Notes"
+  })
 }
 
 onMounted(() => {
