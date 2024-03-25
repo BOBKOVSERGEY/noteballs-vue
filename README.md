@@ -1,2 +1,2 @@
-16 - Noteballs Pinia, Reusable Components, Router & More
-014 useRouter - Redirect to Notes Page
+17 - Noteballs Directives, Watchers & Composables
+004 Composable - useWatchCharacters

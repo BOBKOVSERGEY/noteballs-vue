@@ -1,7 +1,23 @@
 <script setup>
   import {ref} from "vue";
+  import { onClickOutside } from "@vueuse/core";
 
   const showMobileNav = ref(false);
+  const navbarMenuRef = ref(null);
+  const navbarMenuBurgerRef = ref(null);
+
+  /*
+    Click outside to close
+   */
+
+  onClickOutside(navbarMenuRef, () => {
+    showMobileNav.value = false
+  }, {
+    ignore: [
+        navbarMenuBurgerRef
+    ]
+  })
+
 </script>
 
 <template>
@@ -23,6 +39,7 @@
             aria-expanded="false"
             data-target="navbarBasicExample"
             role="button"
+            ref="navbarMenuBurgerRef"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -33,6 +50,7 @@
       <div
           class="navbar-menu"
           :class="{ 'is-active' : showMobileNav }"
+          ref="navbarMenuRef"
       >
 
         <div class="navbar-end">

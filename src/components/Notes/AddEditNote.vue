@@ -1,6 +1,6 @@
 <script setup>
   import {ref} from "vue";
-
+  import { vAutofocus } from "@/directives/vAutofocus.js";
 
 
   const modelValue = defineModel({
@@ -33,6 +33,8 @@
     focusTextarea
   })
 
+
+
 </script>
 
 <template>
@@ -51,6 +53,8 @@
             class="textarea"
             :placeholder="placeholder"
             ref="textAreaRef"
+            v-autofocus
+            maxlength="100"
         />
       </div>
     </div>
